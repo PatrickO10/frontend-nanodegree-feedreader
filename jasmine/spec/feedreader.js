@@ -1,51 +1,51 @@
 // feedreader.js
 
 $(function() {
+    // RSS Feeds test suite
     // Makes sure allFeeds are defined and not empty
     describe('RSS Feeds', function() {
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-    // Makes sure Urls are defined, contain http in the beginning, and url.length is not 0
-    describe('allFeeds Urls', function() {
-        it('are defined', function() {
-            for (var feed in allFeeds){
-                expect(allFeeds[feed].url).toBeDefined();
-                expect(allFeeds[feed].url.length).not.toBe(0);
-                // Searches for string "http" if found returns 0 (0 means it is at the beginning)
-                expect(allFeeds[feed].url.search("http")).toBe(0);
-            }
-        })
+        // Makes sure Urls are defined, contain http in the beginning, and url.length is not 0
+            it('Urls defined', function() {
+                for (var feed in allFeeds){
+                    expect(allFeeds[feed].url).toBeDefined();
+                    expect(allFeeds[feed].url.length).not.toBe(0);
+                    // Searches for string "http" if found returns 0 (0 means it is at the beginning)
+                    expect(allFeeds[feed].url.search("http")).toBe(0);
+                }
+            });
+        // Makes sure there is a name defined and it is not empty
+            it('Names defined', function() {
+                allFeeds.forEach(function(feed){
+                    expect(feed.name).toBeDefined();
+                    expect(feed.name.length).not.toBe(0);
+                // Makes sure the name is not a string with only spaces by trimming it down
+                    expect(feed.name.trim()).not.toBe('');
+                })
+            });
     });
 
-    // Makes sure there is a name defined and it is not empty
-    describe('allFeeds Names', function() {
-        it('are defined', function() {
-            allFeeds.forEach(function(feed){
-                expect(feed.name).toBeDefined();
-                expect(feed.name.length).not.toBe(0);
-                // Makes sure the name is not a string with only spaces by trimming it down
-                expect(feed.name.trim()).not.toBe('');
-            })
-        })
+    // The Menu test suite
+    // Makes sure the body has class menu-hidden because that is what hides the menu
+    describe('The Menu', function() {
+        it('is hidden', function() {
+            expect($('body').hasClass("menu-hidden")).not.toBe(false);
+        });
+
+        it('and when clicked shows menu and unclicked hides menu', function() {
+            var menuIcon = $('.menu-icon-link');
+            menuIcon.trigger('click'); // Triggers the menu ("clicks" the .menu-icon-link)
+            expect($('body').hasClass("menu-hidden")).not.toBe(true); // Expect body not to have class menu-hidden
+            menuIcon.trigger('click')                                 // When triggered again
+            expect($('body').hasClass("menu-hidden")).not.toBe(false); // Expect body to have class menu-hidden
+        });
     });
-});
 
 
     /* TODO: Write a new test suite named "The menu" */
-
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
-
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
