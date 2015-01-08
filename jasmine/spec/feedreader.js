@@ -29,8 +29,8 @@ $(function() {
     });
 
     // The Menu test suite
-    // Makes sure the body has class menu-hidden because that is what hides the menu
     describe('The Menu', function() {
+        // Makes sure the body has class menu-hidden because that is what hides the menu
         it('is hidden', function() {
             expect($('body').hasClass("menu-hidden")).not.toBe(false);
         });
@@ -44,17 +44,19 @@ $(function() {
         });
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
-
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test wil require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+    // Initial Entries test suite
+    // Tests loadFeed() function
+    describe('Initial Entries', function() {
+        beforeEach(function (done) {
+            // loadFeed(id, cb) if (cb) { cb() }
+            loadFeed(0, done); // Done is called at the end of loadFeed
+        });
+        // Makes sure .feed .entry has at least 1 .entry element
+        it('has at least a single .entry element', function(done) {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+            done();
+        });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection"
 

@@ -2,3 +2,4 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 http://api.jquery.com/trigger/
 http://api.jquery.com/hasClass/
+http://api.jquery.com/children/
