@@ -1,43 +1,36 @@
-/* feedreader.js
- *
- * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
+// feedreader.js
 
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
- */
 $(function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+    // Makes sure allFeeds are defined and not empty
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
-
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+    // Makes sure Urls are defined, contain http in the beginning, and url.length is not 0
+    describe('allFeeds Urls', function() {
+        it('are defined', function() {
+            for (var feed in allFeeds){
+                expect(allFeeds[feed].url).toBeDefined();
+                expect(allFeeds[feed].url.length).not.toBe(0);
+                // Searches for string "http" if found returns 0 (0 means it is at the beginning)
+                expect(allFeeds[feed].url.search("http")).toBe(0);
+            }
+        })
     });
+
+    // Makes sure there is a name defined and it is not empty
+    describe('allFeeds Names', function() {
+        it('are defined', function() {
+            allFeeds.forEach(function(feed){
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+                // Makes sure the name is not a string with only spaces by trimming it down
+                expect(feed.name.trim()).not.toBe('');
+            })
+        })
+    });
+});
 
 
     /* TODO: Write a new test suite named "The menu" */
