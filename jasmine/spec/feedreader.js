@@ -47,7 +47,7 @@ $(function() {
     // Initial Entries test suite
     // Tests loadFeed() function
     describe('Initial Entries', function() {
-        beforeEach(function (done) {
+        beforeEach(function (done) { // Called before the spec
             // loadFeed(id, cb) if (cb) { cb() }
             loadFeed(0, done); // Done is called at the end of loadFeed
         });
@@ -58,10 +58,29 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+    /* New Feed Selection test suite.
+    * Ensures when a new feed is loaded
+    * by the loadFeed function that the content actually changes.
+    */
+    describe('New Feed Selection', function() {
+        var headers0,
+            headers1;
+        beforeEach(function (done) {
+            // Finds all the h2 headlines for Udacity Blog and makes it into one string
+            headers0 = $('article').find('h2').text();
+            loadFeed(1, done);
+        });
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        it('has changed', function (done) {
+            // Finds all the h2 headlines for CSS
+            headers1 = $('article').find('h2').text();
+            expect(headers1).not.toBe(headers0);
+            done();
+        });
+
+        // Sets it back to Udacity Blog
+        afterEach(function (done) {
+            loadFeed(0, done);
+        })
+    });
 }());

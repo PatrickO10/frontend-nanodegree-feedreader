@@ -3,3 +3,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 http://api.jquery.com/trigger/
 http://api.jquery.com/hasClass/
 http://api.jquery.com/children/
+http://api.jquery.com/text/
+http://api.jquery.com/find/
+http://evanhahn.com/how-do-i-jasmine/
